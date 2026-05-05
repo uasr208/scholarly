@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts - matches Playfair and Inter from your screenshot */
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: var(--font-inter), sans-serif;
+
+  /* Colors - matches the exact shades from Screenshot 2026-05-05 203128.png */
+  --color-scholarly-bg: #F5F2EA;
+  --color-scholarly-charcoal: #1A1A1A;
+  --color-scholarly-error: #B91C1C;
+  --color-scholarly-border: #D1D1D1;
+
+  /* Border Radius */
+  --radius-3xl: 1.5rem;
+}
+
+/* Base styles to ensure the background covers the whole screen */
+@layer base {
+  body {
+    @apply bg-scholarly-bg text-scholarly-charcoal;
+  }
+}
