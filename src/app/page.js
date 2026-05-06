@@ -5,14 +5,12 @@ import { authService } from "@/services/auth.service"; // Import your service
 
 export default function Home() {
   const [role, setRole] = useState("teacher");
-  const [email, setEmail] = useState("invalid-email-format"); // Mocking the error from your screenshot
+  const [email, setEmail] = useState(""); // Mocking the error from your screenshot
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   // This state will control if the red error UI shows up
-  const [emailError, setEmailError] = useState(
-    "Please enter a valid academic email format.",
-  );
+  const [emailError, setEmailError] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,6 +19,12 @@ export default function Home() {
   // This is where handleLogin lives!
   const handleLogin = async () => {
     setIsLoading(true);
+    // Basic Validation Check
+    if (!email.includes("@")) {
+      setEmailError("Please enter a valid academic email format.");
+      setIsLoading(false);
+      return; // Stop the function here
+    }
     setEmailError("");
 
     try {
