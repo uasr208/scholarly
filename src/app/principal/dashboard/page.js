@@ -7,7 +7,7 @@ export default function PrincipalDashboard() {
   return (
     <DashboardLayout role="PRINCIPAL">
       <div className="space-y-10">
-        {/* Principal Specific Stats */}
+        {/* Principal dashboard overview metrics */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <StatCard
             title="PENDING REVIEWS"
@@ -35,7 +35,7 @@ export default function PrincipalDashboard() {
           />
         </div>
 
-        {/* Priority Review Section */}
+        {/* Priority review panel for the top pending items. */}
         <div className="bg-white rounded-[40px] p-8 md:p-10 shadow-sm border border-black/5">
           <div className="flex justify-between items-center mb-8">
             <h3 className="font-serif text-2xl font-bold">Priority Reviews</h3>

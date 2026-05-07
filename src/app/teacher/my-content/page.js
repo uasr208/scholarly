@@ -3,7 +3,7 @@ import { useState } from "react";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import StatusBadge from "@/components/StatusBadge";
 
-// Mock data representing teacher's uploads
+// Sample teacher uploads used to populate the content library in the absence of a backend.
 const broadcasts = [
   {
     id: 1,
@@ -42,13 +42,13 @@ const broadcasts = [
 export default function MyContent() {
   const [activeFilter, setActiveFilter] = useState("ALL");
 
-  // Logic: Filter the list based on the selected pill
+  // Filter the teacher's content list by the active approval status.
   const filteredBroadcasts = broadcasts.filter((item) => {
     if (activeFilter === "ALL") return true;
     return item.status === activeFilter;
   });
 
-  // Calculate dynamic stats for the progress bars
+  // Summarize broadcast metrics used in the dashboard stats cards.
   const totalHours = (
     broadcasts.reduce((acc, curr) => acc + curr.duration, 0) / 60
   ).toFixed(1);
@@ -63,7 +63,7 @@ export default function MyContent() {
   return (
     <DashboardLayout role="TEACHER">
       <div className="space-y-10">
-        {/* --- HEADER & RESPONSIVE FILTER --- */}
+        {/* Header section with responsive status filters */}
         <header className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6">
           <div>
             <p className="text-[10px] font-bold tracking-[0.2em] text-gray-400 uppercase mb-1">
@@ -74,7 +74,7 @@ export default function MyContent() {
             </h1>
           </div>
 
-          {/* Filter Pill Container: Wraps on mobile, stays single line on desktop */}
+          {/* Filter pills allow quick status segmentation for the content list. */}
           <div className="flex flex-wrap lg:flex-nowrap bg-gray-50 p-1.5 rounded-2xl border border-black/5 w-full lg:w-auto">
             {filterOptions.map((status) => (
               <button
@@ -92,9 +92,9 @@ export default function MyContent() {
           </div>
         </header>
 
-        {/* --- TABLE / LIST SECTION --- */}
+        {/* Content listing section that adapts between cards and table layouts. */}
         <div className="space-y-4 min-h-[300px]">
-          {/* Table Headers: Hidden on mobile for better card layout */}
+          {/* Table headers are only shown on larger screens for readability. */}
           <div className="hidden lg:grid grid-cols-12 px-8 text-[10px] font-bold tracking-widest text-gray-300 uppercase">
             <div className="col-span-5">Broadcast Title</div>
             <div className="col-span-3">Subject</div>
@@ -136,13 +136,13 @@ export default function MyContent() {
           ) : (
             <div className="py-20 text-center bg-gray-50/50 rounded-[40px] border border-dashed border-gray-200">
               <p className="font-serif italic text-gray-400">
-                No content found in "{activeFilter}"
+                No content found for {activeFilter}
               </p>
             </div>
           )}
         </div>
 
-        {/* --- DYNAMIC STATS SECTION --- */}
+        {/* Summary stat cards and progress visualization */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6">
           {/* Stat 1: Airtime */}
           <div className="bg-[#FAF9F6] p-8 rounded-[40px] border border-black/5">

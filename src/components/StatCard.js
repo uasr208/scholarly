@@ -1,3 +1,4 @@
+// Reusable stat card for dashboard overview metrics.
 export default function StatCard({ icon, title, value, subtext, statusLabel }) {
   return (
     <div className="bg-white p-8 rounded-[32px] shadow-sm border border-black/5 flex flex-col justify-between h-[220px] transition-hover hover:shadow-md">

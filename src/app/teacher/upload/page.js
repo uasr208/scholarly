@@ -6,6 +6,7 @@ import { uploadSchema } from "@/schema/upload";
 import DashboardLayout from "@/layouts/DashboardLayout";
 
 export default function UploadContent() {
+  // Use React Hook Form with Zod validation so form state and validation rules stay in sync.
   const {
     register,
     handleSubmit,
@@ -16,10 +17,9 @@ export default function UploadContent() {
 
   const onFinalize = async (data) => {
     try {
-      // 1. Create a FormData instance
+      // Build the request payload for multipart form uploads.
       const formData = new FormData();
 
-      // 2. Append all text fields
       formData.append("title", data.title);
       formData.append("subject", data.subject);
       formData.append("description", data.description || "");
@@ -27,10 +27,10 @@ export default function UploadContent() {
       formData.append("endTime", data.endTime);
       formData.append("rotationDuration", data.rotationDuration || 0);
 
-      // 3. Append the file (this is why we used .transform(list => list[0]) in Zod)
+      // Attach the validated file object to the payload.
       formData.append("file", data.file);
 
-      // 4. Send with Axios
+      // Submit the broadcast payload to backend upload endpoint.
       const response = await axios.post("/api/content/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -56,7 +56,7 @@ export default function UploadContent() {
         <h1 className="font-serif text-3xl font-bold">Publish Content</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Section 1: Basic Info */}
+          {/* Primary upload metadata section */}
           <div className="bg-white p-8 rounded-[32px] shadow-sm border border-black/5 space-y-4">
             <div>
               <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
@@ -99,7 +99,7 @@ export default function UploadContent() {
             </div>
           </div>
 
-          {/* Section 2: Timing & File */}
+          {/* Scheduling and file selection section */}
           <div className="bg-white p-8 rounded-[32px] shadow-sm border border-black/5 space-y-4">
             <div className="grid grid-cols-2 gap-4">
               <div>

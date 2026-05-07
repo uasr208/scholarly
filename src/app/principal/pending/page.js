@@ -3,7 +3,7 @@ import { useState } from "react";
 import DashboardLayout from "@/layouts/DashboardLayout";
 import axios from "axios";
 
-// Mock data
+// Sample broadcast data for pending approvals. Replace with real API payloads when available.
 const initialPendingItems = [
   {
     id: "B101",
@@ -25,11 +25,11 @@ export default function PendingApprovals() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [rejectReason, setRejectReason] = useState("");
 
-  // --- HANDLERS ---
+  // Approval and rejection handlers for administrator workflow.
 
   const handleApprove = async (id) => {
     try {
-      // Logic: Update status to APPROVED
+      // Mark the selected broadcast as approved in the backend.
       await axios.patch(`/api/admin/broadcast/${id}`, { status: "APPROVED" });
       setItems(items.filter((item) => item.id !== id));
       alert("Broadcast approved and published.");
@@ -47,7 +47,7 @@ export default function PendingApprovals() {
     if (!rejectReason.trim()) return alert("Please provide a reason.");
 
     try {
-      // Logic: Update status to REJECTED with a feedback message
+      // Mark the broadcast as rejected and send reviewer feedback.
       await axios.patch(`/api/admin/broadcast/${selectedItem.id}`, {
         status: "REJECTED",
         reason: rejectReason,
@@ -111,7 +111,7 @@ export default function PendingApprovals() {
           )}
         </div>
 
-        {/* --- REJECTION DIALOG (MODAL) --- */}
+        {/* Rejection reason modal for the selected pending broadcast */}
         {isModalOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
             <div className="bg-white w-full max-w-md rounded-[40px] p-10 shadow-2xl animate-in zoom-in duration-300">
@@ -119,7 +119,7 @@ export default function PendingApprovals() {
                 Rejection Reason
               </h3>
               <p className="text-gray-400 text-sm mb-6">
-                Explain why "{selectedItem?.title}" is being rejected.
+                Explain why {selectedItem?.title} is being rejected.
               </p>
 
               <textarea

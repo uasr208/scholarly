@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Scholarly
 
-## Getting Started
+Institutional dashboard and live portal for managing academic broadcasts.
 
-First, run the development server:
+Scholarly is a role-based content platform for educational institutions. Teachers upload lecture materials and live broadcasts, Principals approve or reject submissions, and students access approved live content without authentication.
+
+## Features
+
+- **Teacher dashboard**
+  - Upload broadcast content with metadata and file attachments.
+  - Client-side form validation with Zod and React Hook Form.
+  - Track content status: Approved, Pending, Rejected.
+- **Principal dashboard**
+  - Review pending broadcasts.
+  - Approve or reject with feedback.
+  - View high-level operational metrics.
+- **Student public portal**
+  - Access broadcasts using a teacher-specific ID.
+  - Public-facing live page without login.
+  - Mobile-friendly broadcast cards.
+
+## Tech Stack
+
+- Framework: **Next.js 14** (App Router)
+- Styling: **Tailwind CSS**
+- Validation: **Zod** + **React Hook Form**
+- API Client: **Axios**
+- Icons: **Emoji-based UI icons**
+
+## Project Structure
+
+```text
+src/
+├── app/              # Route-based pages for public, teacher, and principal flows
+│   ├── auth/         # Login and landing pages
+│   ├── live/         # Public student-facing live route
+│   ├── principal/    # Principal dashboard and approvals
+│   └── teacher/      # Teacher workspace and content tools
+├── components/       # Reusable UI components
+├── layouts/          # Dashboard layout wrapper
+├── schema/           # Validation schemas
+└── services/         # API and authentication helpers
+```
+
+## Installation
+
+```bash
+git clone https://github.com/uasr208/scholarly.git
+cd scholarly
+npm install
+```
+
+## Run
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the app at `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Authentication is currently mocked in `src/services/auth.service.js`.
+- The public live page uses sample broadcast data and should be wired to a real API.
+- The current app structure separates UI components from business logic to support future scaling.

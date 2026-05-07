@@ -1,6 +1,8 @@
 import StatusBadge from "./StatusBadge";
 
+// Single row component rendering details for a content upload entry.
 export default function UploadRow({ title, subtitle, date, status, type }) {
+  // Choose a simple icon based on the upload type to improve scanability.
   const icon = type === "audio" ? "🎵" : "📄";
 
   return (

@@ -37,7 +37,7 @@ export default function TeacherDashboard() {
         />
       </div>
 
-      {/* Recent Upload Section */}
+      {/* Recent uploads panel showing latest teacher submissions */}
       <div className="bg-white rounded-[40px] p-10 shadow-sm border border-black/5">
         <div className="flex justify-between items-center mb-8">
           <div>

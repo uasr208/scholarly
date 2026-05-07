@@ -1,0 +1,38 @@
+Frontend Notes - Scholarly Dashboard
+
+## Architecture Overview
+- Built with **Next.js App Router** and role-based pages.
+- Public student portal is separated from the authenticated teacher/principal dashboard.
+- UI components are designed to be reusable and composable.
+
+## Route Structure
+- `/` — Landing page for login and student portal lookup.
+- `/teacher/*` — Teacher workspace: dashboard, content upload, and content library.
+- `/principal/*` — Principal workspace: dashboard, approval queue, and all content review.
+- `/live/[teacherId]` — Public live page for students to join using a teacher ID.
+
+## Authentication
+- Currently mocked in `src/services/auth.service.js`.
+- A successful login stores a demo user payload in `localStorage`.
+- Role selection determines the target dashboard.
+
+## Data Handling
+- Broadcast data is mocked in UI pages for now.
+- `src/schema/upload.js` enforces client-side validation for uploads.
+- Uploads are submitted as `multipart/form-data` using Axios.
+
+## Validation Rules
+- Title and subject are required.
+- Start/end times are required and end time must be after start.
+- Uploaded files must be JPG, PNG, or GIF and under 10MB.
+
+## UX Notes
+- Dashboard layout uses a sidebar and top nav for consistent navigation.
+- Mobile-friendly components are built with responsive Tailwind utility classes.
+- Pending approvals include a modal for rejection reason.
+
+## Future Improvements
+- Replace mock auth with a real authentication backend.
+- Wire broadcast pages to real API endpoints.
+- Add pagination and search to content tables.
+- Add file previews for uploaded broadcast attachments.

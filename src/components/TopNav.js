@@ -1,8 +1,10 @@
+// Top navigation bar used across teacher/principal dashboards.
+// Includes the mobile menu trigger, role label, search field, and notifications.
 export default function TopNav({ role = "TEACHER", onMenuClick }) {
   return (
     <header className="h-20 bg-transparent flex items-center justify-between px-4 md:px-10">
       <div className="flex items-center gap-4">
-        {/* Mobile Menu Button */}
+        {/* Toggle sidebar on small screens */}
         <button onClick={onMenuClick} className="lg:hidden text-2xl p-2">
           ☰
         </button>

@@ -5,6 +5,7 @@ export default function Sidebar({ role }) {
   const pathname = usePathname();
   const router = useRouter();
 
+  // Navigation configuration for each user role in the dashboard.
   const menuConfig = {
     TEACHER: [
       { name: "Dashboard", path: "/teacher/dashboard", icon: "📊" },
@@ -21,10 +22,8 @@ export default function Sidebar({ role }) {
   const links = menuConfig[role] || menuConfig.TEACHER;
 
   const handleLogout = () => {
-    // 1. Clear any auth tokens/session storage here
+    // Clear any authentication state before redirecting back to the landing page.
     // localStorage.removeItem('token');
-
-    // 2. Redirect to login
     window.location.href = "/";
   };
 
@@ -58,7 +57,7 @@ export default function Sidebar({ role }) {
         </nav>
       </div>
 
-      {/* Logout Button Section */}
+      {/* Logout control displayed at the bottom of the sidebar */}
       <div className="pt-6 border-t border-black/5">
         <button
           onClick={handleLogout}

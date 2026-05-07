@@ -1,3 +1,4 @@
+// Renders a compact badge for approval status values.
 export default function StatusBadge({ status }) {
   const styles = {
     APPROVED: "bg-green-50 text-green-600 border-green-100",

@@ -1,22 +1,24 @@
-// src/services/auth.service.js
+// Authentication service mock used by the login page.
+// Persists a simple user object to local storage for demo flows.
 
 export const authService = {
   login: async (email, password, role) => {
-    // We wrap this in a Promise to simulate a network delay (1.5 seconds)
+    // Simulate network latency so loading states behave correctly.
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Mock logic: In a real app, this would be an API call to a database
+        // Simple validation branch used only for local development.
+        // Replace with a real backend authentication call later.
         if (email.includes("error")) {
           reject("Invalid academic email format.");
         } else {
-          // Create a mock user object based on the role selected in the UI
+          // Build the mocked authenticated user payload.
           const mockUser = {
             email: email,
             role: role, // 'teacher' or 'principal'
             token: "mock-jwt-token-12345",
           };
 
-          // Save to localStorage so the user stays logged in on refresh
+          // Persist user details locally to keep the session across refreshes.
           localStorage.setItem("scholarly_user", JSON.stringify(mockUser));
 
           resolve(mockUser);
