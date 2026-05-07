@@ -63,3 +63,6 @@ Open the app at `http://localhost:3000`.
 - Authentication is currently mocked in `src/services/auth.service.js`.
 - The public live page uses sample broadcast data and should be wired to a real API.
 - The current app structure separates UI components from business logic to support future scaling.
+
+Figma Design,My Implementation
+| <img src="./public/authFigma.png" width="400" /> |
